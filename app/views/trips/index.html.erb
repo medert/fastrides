@@ -1,0 +1,33 @@
+
+<h4 class="mbta-header">MBTA Alerts</h4>
+<ul></ul>
+
+<% if !@mbta.nil? %>
+<div style="border : solid 2px #ff0000; background : #$focus-red; color : #ffffff; padding : 10px; margin-left: 100px; max-width : auto; height : 120px; overflow : auto; ">
+  <% @mbta.alert_messages.each do |message| %></li>
+    <ul class="mbta">
+      <%= message %>
+    </ul>
+  <% end %>
+</div><br />
+<% end %>
+
+
+<%= image_tag("ridesharing.png", :height => 50 ) %>
+
+
+  <div class="text-center">
+    <h2>TRIPS</h2>
+  </div>
+
+<% if user_signed_in? %>
+<div class="row text-center">
+  <div class="small-centered small-2 columns button small">
+    <%= link_to "New Trip", new_trip_path, class: "new" %>
+  </div>
+</div>
+<% end %>
+
+<ul class="small-10 small-centered column">
+  <%= render @trips %>
+</ul>

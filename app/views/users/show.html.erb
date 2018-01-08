@@ -1,0 +1,38 @@
+<div class="review-title small-8 small-centered column text-center">
+  <h3>Profile Information</h3>
+  <%= image_tag "#{@user.profile_photo}", size: "160x160" %></br>
+  <div><%= @user.first_name %> <%= @user.last_name %></div>
+  <table align=center text-align=center>
+    <tr>
+      <td>Email:</td>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td><%= @user.address %></td>
+    </tr>
+    <tr>
+      <td>Driver's lisence:</td>
+      <td><%= @user.d_lisence %></td>
+    </tr>
+    <% if user_signed_in? && (current_user.role == "admin" || current_user.id == @user.id) %>
+    <tr>
+      <td>
+        <%= button_to 'Update', edit_user_registration_path, method: :get, class: "button tiny" %>
+      </td>
+      <td>
+        <%= button_to 'Delete', root_path, method: :delete, class: "button tiny" %>
+      </td>
+    </tr>
+  <% end %>
+    </table>
+
+<div>
+  <h4>Reviews about You</h4>
+    <% if user_signed_in? && !@reviews.nil? %>
+      <%= render 'reviews/review' %>
+    <% else %>
+      <%= "No reviews have been posted yet!" %>
+    <% end %>
+</div>
+</div>
